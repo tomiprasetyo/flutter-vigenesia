@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:vigenesia/Screens/MainScreens.dart';
 
 import 'Screens/Login.dart';
 
-void main() => runApp(MaterialApp(
+void main() => runApp(const MaterialApp(
       debugShowCheckedModeBanner: false,
       home:
           Login(), // <-- Buat Class Baru yg bernama MyScreen di dalam lib bikin folder baru screens isinya MyScreen.dart

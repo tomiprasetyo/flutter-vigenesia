@@ -20,12 +20,12 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   String baseurl =
-      "http://vigenesia.org"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+      "http://localhost"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   var dio = Dio();
-  Future<dynamic> putPost(String isi_motivasi, String ids) async {
-    Map<String, dynamic> data = {"isi_motivasi": isi_motivasi, "id": ids};
-    var response = await dio.put('$baseurl/api/dev/PUTmotivasi',
+  Future<dynamic> putPost(String isiMotivasi, String ids) async {
+    Map<String, dynamic> data = {"isi_motivasi": isiMotivasi, "id": ids};
+    var response = await dio.put('$baseurl/vigenesia/api/dev/PUTmotivasi',
         data: data,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
@@ -42,26 +42,26 @@ class _EditPageState extends State<EditPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit"),
+        title: const Text("Edit"),
       ),
       body: SafeArea(
           child: Container(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("${widget.isi_motivasi}"),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width / 1.4,
                   child: FormBuilderTextField(
                     name: "isi_motivasi",
                     controller: isiMotivasiC,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "New Data",
                       border: OutlineInputBorder(),
                       contentPadding: EdgeInsets.only(left: 10),
@@ -77,14 +77,14 @@ class _EditPageState extends State<EditPage> {
                                     Navigator.pop(context),
                                     Flushbar(
                                       message: "Berhasil Update & Refresh dlu",
-                                      duration: Duration(seconds: 5),
+                                      duration: const Duration(seconds: 5),
                                       backgroundColor: Colors.green,
                                       flushbarPosition: FlushbarPosition.TOP,
                                     ).show(context)
                                   }
                               });
                     },
-                    child: Text("Submit"))
+                    child: const Text("Submit"))
               ],
             ),
           ),

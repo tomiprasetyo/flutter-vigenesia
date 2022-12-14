@@ -8,13 +8,13 @@ class LoginModels {
   LoginModels.fromJson(Map<String, dynamic> json) {
     isActive = json['is_active'];
     message = json['message'];
-    data = json['data'] != null ? new LoginData.fromJson(json['data']) : null;
+    data = json['data'] != null ? LoginData.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['is_active'] = this.isActive;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['is_active'] = isActive;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -57,16 +57,16 @@ class LoginData {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['iduser'] = this.iduser;
-    data['nama'] = this.nama;
-    data['profesi'] = this.profesi;
-    data['email'] = this.email;
-    data['password'] = this.password;
-    data['role_id'] = this.roleId;
-    data['is_active'] = this.isActive;
-    data['tanggal_input'] = this.tanggalInput;
-    data['modified'] = this.modified;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['iduser'] = iduser;
+    data['nama'] = nama;
+    data['profesi'] = profesi;
+    data['email'] = email;
+    data['password'] = password;
+    data['role_id'] = roleId;
+    data['is_active'] = isActive;
+    data['tanggal_input'] = tanggalInput;
+    data['modified'] = modified;
     return data;
   }
 }

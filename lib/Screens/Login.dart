@@ -9,7 +9,6 @@ import 'package:flutter/gestures.dart';
 import 'dart:convert';
 import 'package:vigenesia/Models/Login_Model.dart';
 
-
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -25,12 +24,12 @@ class _LoginState extends State<Login> {
   Future<LoginData?> postLogin(String email, String password) async {
     var dio = Dio();
     String baseurl =
-        "http://vigenesia.org"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+        "http://localhost"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
     Map<String, dynamic> data = {"email": email, "password": password};
 
     try {
-      final response = await dio.post("$baseurl/api/login/",
+      final response = await dio.post("$baseurl/vigenesia/api/login/",
           data: data,
           options: Options(headers: {'Content-type': 'application/json'}));
 
@@ -43,6 +42,7 @@ class _LoginState extends State<Login> {
     } catch (e) {
       print("Failed To Load $e");
     }
+    return null;
   }
 
   TextEditingController emailController = TextEditingController();
@@ -55,32 +55,32 @@ class _LoginState extends State<Login> {
         // <-- Berfungsi Untuk  Bisa Scroll
         child: SafeArea(
           // < -- Biar Gak Keluar Area Screen HP
-          child: Container(
+          child: SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Login Area",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(height: 50), // <-- Kasih Jarak Tinggi : 50px
+                const SizedBox(height: 50), // <-- Kasih Jarak Tinggi : 50px
                 Center(
                   child: Form(
                     key: _fbKey,
-                    child: Container(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width / 1.3,
                       child: Column(
                         children: [
                           FormBuilderTextField(
                             name: "email",
                             controller: emailController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 10),
                                 border: OutlineInputBorder(),
                                 labelText: "Email"),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           FormBuilderTextField(
@@ -89,18 +89,18 @@ class _LoginState extends State<Login> {
                             name: "password",
                             controller: passwordController,
 
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.only(left: 10),
                                 border: OutlineInputBorder(),
                                 labelText: "Password"),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Text.rich(
                             TextSpan(
                               children: [
-                                TextSpan(
+                                const TextSpan(
                                   text: 'Dont Have Account ? ',
                                   style: TextStyle(color: Colors.black54),
                                 ),
@@ -110,22 +110,22 @@ class _LoginState extends State<Login> {
                                       ..onTap = () {
                                         Navigator.push(
                                             context,
-                                            new MaterialPageRoute(
+                                            MaterialPageRoute(
                                                 builder:
                                                     (BuildContext context) =>
-                                                        new Register()));
+                                                        const Register()));
                                       },
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                       color: Colors.blueAccent,
                                     )),
                               ],
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width,
                             child: ElevatedButton(
                                 onPressed: () async {
@@ -135,22 +135,23 @@ class _LoginState extends State<Login> {
                                             if (value != null)
                                               {
                                                 Navigator.pushReplacement(
-                                                      context,
-                                                      new MaterialPageRoute(
-                                                          builder: (BuildContext
-                                                                  context) =>
-                                                              new MainScreens(
-                                                                  nama:
-                                                                      value.nama,idUser: value.iduser)))
-                                              
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (BuildContext
+                                                                context) =>
+                                                            MainScreens(
+                                                                nama:
+                                                                    value.nama,
+                                                                idUser: value
+                                                                    .iduser)))
                                               }
                                             else if (value == null)
                                               {
                                                 Flushbar(
                                                   message:
                                                       "Check Your Email / Password",
-                                                  duration:
-                                                      Duration(seconds: 5),
+                                                  duration: const Duration(
+                                                      seconds: 5),
                                                   backgroundColor:
                                                       Colors.redAccent,
                                                   flushbarPosition:
@@ -159,7 +160,7 @@ class _LoginState extends State<Login> {
                                               }
                                           });
                                 },
-                                child: Text("Sign In")),
+                                child: const Text("Sign In")),
                           ),
                         ],
                       ),

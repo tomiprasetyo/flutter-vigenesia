@@ -15,7 +15,7 @@ class _RegisterState extends State<Register> {
   // Ganti Base URL
 
   String baseurl =
-      "http://vigenesia.org"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
+      "http://localhost"; // ganti dengan ip address kamu / tempat kamu menyimpan backend
 
   Future postRegister(
       String nama, String profesi, String email, String password) async {
@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
     };
 
     try {
-      final response = await dio.post("$baseurl/api/registrasi/",
+      final response = await dio.post("$baseurl/vigenesia/api/registrasi/",
           data: data,
           options: Options(headers: {'Content-type': 'application/json'}));
 
@@ -53,44 +53,44 @@ class _RegisterState extends State<Register> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
-            child: Container(
+            child: SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
               height: MediaQuery.of(context).size.height,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Register Your Account",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                   ),
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   FormBuilderTextField(
                     name: "name",
                     controller: nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Nama"),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "profesi",
                     controller: profesiController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Profesi"),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   FormBuilderTextField(
                     name: "email",
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Email"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   FormBuilderTextField(
@@ -99,15 +99,15 @@ class _RegisterState extends State<Register> {
                     name: "password",
                     controller: passwordController,
 
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         contentPadding: EdgeInsets.only(left: 10),
                         border: OutlineInputBorder(),
                         labelText: "Password"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                         onPressed: () async {
@@ -123,7 +123,8 @@ class _RegisterState extends State<Register> {
                                           Navigator.pop(context);
                                           Flushbar(
                                             message: "Berhasil Registrasi",
-                                            duration: Duration(seconds: 2),
+                                            duration:
+                                                const Duration(seconds: 2),
                                             backgroundColor: Colors.greenAccent,
                                             flushbarPosition:
                                                 FlushbarPosition.TOP,
@@ -135,7 +136,7 @@ class _RegisterState extends State<Register> {
                                         Flushbar(
                                           message:
                                               "Check Your Field Before Register",
-                                          duration: Duration(seconds: 5),
+                                          duration: const Duration(seconds: 5),
                                           backgroundColor: Colors.redAccent,
                                           flushbarPosition:
                                               FlushbarPosition.TOP,
@@ -143,7 +144,7 @@ class _RegisterState extends State<Register> {
                                       }
                                   });
                         },
-                        child: Text("Daftar")),
+                        child: const Text("Daftar")),
                   ),
                 ],
               ),
